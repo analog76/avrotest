@@ -7,10 +7,35 @@ This document will go over the Avro simple example.
 
 2) Generate a java file by compiling using the avrotool. 
  The general syntax is 
- $java -jar /path/to/avro-tools-1.7.8.jar compile schema <schema file> <destination>
+ 
+ java -jar /path/to/avro-tools-1.7.8.jar compile schema <schema file> <destination>
 
 3) For example , the employer schema generates the java file in the employer folder. 
+
  java -jar avro-tools-1.7.7.jar compile schema employer.avsc  employer/
  
  
+## Serializer
+1) Set the values in the employer object.
+
+        Employer employer = new Employer();
+
+        employer.setName("glassdoor");
+        employer.setLocation("100 Highway");
+        employer.setDoj("2007");
+        employer.setCity("Sausalito");
+        employer.setTotalCount(500);
+        employer.setAvgSalary(new Float(123444.2));
+        
+2) create DatumWriter  and DataFileWriter.
+        File file = new File(fileName);
+        DatumWriter<Employer> employerDatumWriter =
+                new SpecificDatumWriter<Employer>(Employer.class);
+        DataFileWriter<Employer> employerFileWriter =
+                new DataFileWriter<Employer>(employerDatumWriter);
+
+
+3) Add the employer object in the fileWriter and it generates the output in the employer.avro file.
+            employerFileWriter.create(employer.getSchema(), file);
+
 
