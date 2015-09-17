@@ -1,0 +1,13 @@
+{ "type": "record",
+  "name": "Employer",
+  "namespace": "com.anand.avro",
+  "fields" : [
+              {"name": "name", "type": "string"},
+              {"name": "doj", "type": "string"},
+              {"name": "location", "type": "string"},
+              {"name": "city", "type": ["null", "string"]},
+              {"name": "totalCount", "type": "int"},
+	      {"name": "avgSalary", "type":"float"}
+             ]
+}
+
