@@ -28,6 +28,7 @@ This document will go over the Avro simple example.
         employer.setAvgSalary(new Float(123444.2));
         
 2) create DatumWriter  and DataFileWriter.
+
         File file = new File(fileName);
         DatumWriter<Employer> employerDatumWriter =
                 new SpecificDatumWriter<Employer>(Employer.class);
@@ -36,6 +37,7 @@ This document will go over the Avro simple example.
 
 
 3) Add the employer object in the fileWriter and it generates the output in the employer.avro file.
+
             employerFileWriter.create(employer.getSchema(), file);
 
 
