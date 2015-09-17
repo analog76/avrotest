@@ -15,7 +15,7 @@ This document will go over the Avro simple example.
  java -jar avro-tools-1.7.7.jar compile schema employer.avsc  employer/
  
  
-## Serializer
+## Avro Serializer
 1) Set the values in the employer object.
 
         Employer employer = new Employer();
@@ -39,5 +39,31 @@ This document will go over the Avro simple example.
 3) Add the employer object in the fileWriter and it generates the output in the employer.avro file.
 
             employerFileWriter.create(employer.getSchema(), file);
+
+
+## Avro Deserializer
+
+1) Create DatumReader and FileReader
+
+        File file = new File(fileName);
+        DatumReader<Employer> employerDatumReader = new SpecificDatumReader<Employer>(Employer.class);
+        DataFileReader<Employer> employerFileReader = null;
+        employerFileReader = new DataFileReader<Employer>(file, employerDatumReader);
+        
+ 2) Iterate it throught he filereader object and it returns the employer object. 
+ 
+ while (employerFileReader.hasNext())
+        {
+            employer = employerFileReader.next();
+            System.out.println(employer);
+        }
+        
+        
+ 
+ 
+ For more information, check the source code.
+
+
+
 
 
